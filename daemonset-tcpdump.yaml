@@ -16,12 +16,11 @@ spec:
         - /bin/bash
         - -c
         - |
-          mkdir /tmp/tcpdump/
           tcpdump -nn -s 0 -i any -w /tmp/tcpdump/${HOSTNAME}_$(date +%d_%m_%Y-%H_%M_%S-%Z).pcap &
           sleep 60
           pkill tcpdump
           sleep 10m
-        image: registry.access.redhat.com/ubi9/toolbox:9.2-7
+        image: quay.io/openshift/origin-network-tools:latest
         name: collect-tcpdump-ocp
         securityContext:
           privileged: true
